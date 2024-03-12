@@ -1,3 +1,5 @@
 .replit
 README.md
 replit.nix
+package-lock.json
+/node_modules

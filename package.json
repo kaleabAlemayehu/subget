@@ -3,9 +3,19 @@
   "version": "1.0.0",
   "description": "subtitle downloader terminal utility",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./index.js"
   },
   "author": "Neo ( Kaleab Alemayehu )",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
+    "keypress": "^0.2.1",
+    "opensubtitles.com": "^1.1.0"
+  }
 }
