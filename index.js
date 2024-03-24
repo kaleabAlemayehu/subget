@@ -1,25 +1,25 @@
-const { key, user, pass } = process.env;
-const OS  = require( "opensubtitles.com");
-const {renderResult} = require("./render.js");
-const {getSubs} = require("./request.js");
+import dotenv from "dotenv";
+dotenv.config();
+import OS from "opensubtitles.com"
+import {renderResult} from "./render.js";
+import {getSubs} from "./request.js";
 
 
 // file process.argv[2];
 // register user
   const os = new OS({
-    apikey: key,
+    apikey: process.env.key,
     useragent: "subget v0.0.1",
   });
 
   os.login({
-    username: user,
-    password: pass,
+    username: process.env.user,
+    password: process.env.pass,
   })
     .then((response) => response)
     .catch(console.error);
 
 
-module.exports = {
-  os
-}
-renderResult(getSubs("The Matrix (1999) 1080p BrRip x264 - 1.85GB - YIFY"));
+    renderResult(await getSubs("The Matrix (1999) 1080p BrRip x264 - 1.85GB - YIFY"));
+    
+    export{os}

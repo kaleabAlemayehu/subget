@@ -1,6 +1,10 @@
-const chalk = require("chalk");
+import chalk from "chalk";
 const log = console.log;
 const renderResult = (result) => {
+  
   log(chalk.blue(result));
 };
-module.exports = renderResult;
+
+export {
+  renderResult
+}
