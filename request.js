@@ -27,9 +27,12 @@ const getSubs = async (title) => {
 
 };
 
-const downloadSubs = (id) => {
-  
-}
+const downloadSubs = async (id) => {
+  const response = await os.download({
+    file_id: id,
+  });
+  console.log(response);
+};
 export {
   getSubs,
   downloadSubs

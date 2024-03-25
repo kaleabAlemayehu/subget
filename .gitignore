@@ -4,3 +4,4 @@ replit.nix
 package-lock.json
 /node_modules
 /Schemas
+.vscode
