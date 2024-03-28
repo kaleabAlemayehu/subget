@@ -17,24 +17,37 @@ os.login({
 })
   .then((response) => response)
   .catch(console.error);
+const pagenation =  (listOfSubs) => {
 
-(async () => {
   const pages = [];
   let page = 0;
-  const listOfSubtitles = await getSubs(
-    "The Matrix (1999) 1080p BrRip x264 - 1.85GB - YIFY"
-  );
-  for (let i = 0; i < Math.floor(listOfSubtitles.length / 5); i++) {
-    pages.push(listOfSubtitles.slice(i * 5, i * 5 + 5));
+
+  for (let i = 0; i < Math.floor(listOfSubs.length / 5); i++) {
+    pages.push(listOfSubs.slice(i * 5, i * 5 + 5));
+
   }
-  renderResult(pages[page], page);
+  return pages;
+}
+const ctrl = async () => {
+  try{
+    let page = 0;
+    let current = 0;
+    const listOfSubs = await getSubs(
+      "The Matrix (1999) 1080p BrRip x264 - 1.85GB - YIFY"
+      );
+      const pages =  pagenation(listOfSubs);
+      
+      renderResult(pages[page], page, current);
+
+  }catch(error) {
+    console.error(error);
+  }
 
   // console.log(pages);
-})();
+}
 
   
 
 
-
-    
+ctrl();
     export{os}
