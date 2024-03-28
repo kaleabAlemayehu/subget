@@ -1,4 +1,4 @@
-import {os } from "./index.js"
+import {os} from "./configSetups.js";
 import Subtitles from "./Model.js";
 
 

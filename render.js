@@ -1,36 +1,36 @@
 import chalk from "chalk";
 const log = console.log;
-const renderResult = (result, page, current) => {
-  result.forEach((el,index) => {
-    if(current == index){
+const renderResult = (result, page, pointer) => {
+  result.forEach((el, index) => {
+    if (pointer == index) {
       log(
         chalk.green(
           `=> ${el.movieName}`,
-          chalk.blue(
-            `- ${el.release}`,
-            chalk.yellow(`${el.language}`)
-          )
+          chalk.blue(`- ${el.release}`, chalk.yellow(`${el.language}`))
         )
       );
-    }else{
+    } else {
       log(
         chalk.green(
           ` ${el.movieName}`,
-          chalk.blue(
-            `- ${el.release}`,
-            chalk.yellow(`${el.language}`)
-          )
+          chalk.blue(`- ${el.release}`, chalk.yellow(`${el.language}`))
         )
       );
-
     }
   });
-  log(chalk.blue("< Previous"));
-  log(chalk.blue("Next >"));
+  if (pointer == 5) {
+    log(chalk.blue.bgWhite("< Previous"));
+  } else {
+    log(chalk.blue("< Previous"));
+  }
+
+  if (pointer == 6) {
+    log(chalk.blue.bgWhite("Next >"));
+  } else {
+    log(chalk.blue("Next >"));
+  }
 
   log(chalk.cyan(`+++++++++++++++++++++ page ${page} +++++++++++++++`));
 };
 
-export {
-  renderResult
-}
+export { renderResult };

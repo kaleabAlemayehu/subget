@@ -1,53 +1,63 @@
-import dotenv from "dotenv";
-dotenv.config();
-import OS from "opensubtitles.com"
-import {renderResult} from "./render.js";
+import { renderResult } from "./render.js";
 import { getSubs, downloadSubs } from "./request.js";
 
 // file process.argv[2];
 // register user
-const os = new OS({
-  apikey: process.env.key,
-  useragent: "subget v0.0.1",
-});
 
-os.login({
-  username: process.env.user,
-  password: process.env.pass,
-})
-  .then((response) => response)
-  .catch(console.error);
-const pagenation =  (listOfSubs) => {
-
+const pagenation = (listOfSubs) => {
   const pages = [];
-  let page = 0;
 
   for (let i = 0; i < Math.floor(listOfSubs.length / 5); i++) {
     pages.push(listOfSubs.slice(i * 5, i * 5 + 5));
-
   }
   return pages;
-}
+};
+
 const ctrl = async () => {
-  try{
+  try {
     let page = 0;
-    let current = 0;
+    let pointer = 0;
     const listOfSubs = await getSubs(
       "The Matrix (1999) 1080p BrRip x264 - 1.85GB - YIFY"
-      );
-      const pages =  pagenation(listOfSubs);
-      
-      renderResult(pages[page], page, current);
+    );
+    const pages = pagenation(listOfSubs);
+    renderResult(pages[page], page, pointer);
 
-  }catch(error) {
+    process.stdin.on("keypress", function (ch, key) {
+      console.clear();
+      if (key && key.ctrl && key.name == "c") {
+        process.stdin.pause();
+      }
+      switch (key.name) {
+        case "down": {
+          if (pointer > 6) {
+            pointer = pointer;
+          } else {
+            pointer++;
+          }
+          break;
+        }
+
+        case "up": {
+          if (pointer < 1) {
+            pointer = pointer;
+          } else {
+            pointer--;
+          }
+          break;
+        }
+        default: {
+          pointer = pointer;
+          break;
+        }
+      }
+      renderResult(pages[page], page, pointer);
+    });
+  } catch (error) {
     console.error(error);
   }
 
   // console.log(pages);
-}
-
-  
-
+};
 
 ctrl();
-    export{os}
