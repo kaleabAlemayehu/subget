@@ -71,11 +71,9 @@ const pagenation = (listOfSubs) => {
   return pages;
 };
 
-const ctrl = async () => {
+const ctrl = async (movie) => {
   try {
-    const listOfSubs = await getSubs(
-      "The Matrix (1999) 1080p BrRip x264 - 1.85GB - YIFY"
-    );
+    const listOfSubs = await getSubs(movie);
     const pages = pagenation(listOfSubs);
     renderResult(pages[page - 1], page, pointer);
 
@@ -87,4 +85,4 @@ const ctrl = async () => {
   // console.log(pages);
 };
 
-ctrl();
+ctrl(process.argv[2]);
