@@ -30,7 +30,7 @@ const renderResult = (result, page, pointer) => {
     log(chalk.blue("Next >"));
   }
 
-  log(chalk.cyan(`+++++++++++++++++++++ page ${page} +++++++++++++++`));
+  log(chalk.cyan(`+++++++++++++++++++++ page ${page} +++++++++++++++++++++`));
 };
 
 export { renderResult };

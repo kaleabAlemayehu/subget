@@ -1,8 +1,6 @@
 import { renderResult } from "./render.js";
 import { getSubs, downloadSubs } from "./request.js";
 
-// file process.argv[2];
-// register user
 let page = 1;
 let pointer = 0;
 const pages = [];
@@ -52,7 +50,6 @@ const nextPage = (page) => {
   } else {
     page++;
   }
-  console.log(`the page is : ${page}`);
   return page;
 };
 
@@ -81,8 +78,6 @@ const ctrl = async (movie) => {
   } catch (error) {
     console.error(error);
   }
-
-  // console.log(pages);
 };
 
 ctrl(process.argv[2]);
